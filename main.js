@@ -17,7 +17,7 @@ function setX()
   }
   else
   {
-    alert("0 to 64 plz");
+    alert("1 to 64 plz");
   }
 }
 
