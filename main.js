@@ -1,27 +1,46 @@
-
+//Variables
 const containerEl = document.getElementById("container");
 const root = document.querySelector(':root');
-const slider = document.getElementById("myRange");
 const output = document.getElementById("valueDisplay");
 const colorInput = document.getElementById("colorEl");
+const inputEl = document.getElementById("diveCount");
+let color;
 
 
 
-
-
-// Update the current slider value
-output.innerHTML = slider.value;
-// Update the current slider value 
-slider.oninput = function() {
-  setX()
-} 
-
+//Value for Rows and Columns
 function setX()
 {
-  output.innerHTML = slider.value;
-  createDiv(slider.value)
+  if (inputEl.value > 0 && inputEl.value <65)
+  { 
+    createDiv(inputEl.value);
+  }
+  else
+  {
+    alert("0 to 64 plz");
+  }
 }
 
+
+
+//Value for Div Color
+//set Global Color Variable Value
+function setColor(clr)
+{
+  color = clr;  
+}
+
+//Set individual div background color on onmouseover
+function setDivColor()
+{
+  return color;
+}
+
+//Random color does not work without this
+function setRainbow()
+{
+  return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
+}
 
 
 
@@ -29,12 +48,14 @@ function setX()
 // Function to create div elements
 function createDiv(x_value) 
 {
-  // get user input of board size through z ; 
+  color = "black"; 
   let x = x_value;
+  
   // Get the styles (properties and values) for the root
   const rootStyle = getComputedStyle(root);
   // Set the value of variable --base
   root.style.setProperty('--base', x);
+  inputEl.value = "";
   let y = "";
   for (let i = 0; i < x ** 2; i++) 
   {
@@ -45,10 +66,7 @@ function createDiv(x_value)
 }
 
 
-function setColor()
-{
-  return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
-}
+
 
 // Function to access children elements
 function accessChildren(event) 
@@ -59,8 +77,15 @@ function accessChildren(event)
   {
     if (childrenEl[i] === event.target)
     {
+      if (color == "rainbow")
+      {
+        childrenEl[i].style.backgroundColor = setRainbow();
+      }
+      else
+      {
+        childrenEl[i].style.backgroundColor = setDivColor();
+      }
       
-      childrenEl[i].style.backgroundColor = setColor();
     }
   }
 }
@@ -69,4 +94,5 @@ function accessChildren(event)
 // Wait for the window to load before creating div elements
 window.onload = function () {
     createDiv(12);
+    
 };

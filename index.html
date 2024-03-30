@@ -7,29 +7,33 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
+   
     <div id="wrapper">
+        <h1>Simple Etch-a-Sketch</h1>
         <div id="container" onmouseover="accessChildren(event)">
             <!-- Place for divs -->
         </div>
 
-        <!--slider-->
+        <!--ui-->
+       
+        <div id="buttonEl">
+            <button onclick="setColor('red')">Red</button>
+            <button onclick="setColor('orange')">Orange</button>
+            <button onclick="setColor('yellow')">Yellow</button>
+            <button onclick="setColor('green')">Green</button>
+            <button onclick="setColor('blue')">Blue</button>
+            <button onclick="setColor('indgo')">Indigo</button>
+            <button onclick="setColor('violet')">Violet</button>
+            <button onclick="setColor('black')">Black</button>
+            <button onclick="setColor('rainbow')">Rainbow</button>
+        </div>
         <div id="uiel">
-            <div class="slidecontainer">
-                <input type="range" min="1" max="64" value="12" class="slider" id="myRange">
-                <div id="valueDisplay">
-                </div>
-            </div>
-            <div class="colorContainer">
-                <input type="color" id="colorEl" value="#000000">
-            </div>
-
-            <label class="switch">
-                <input type="checkbox" id="switchBtn">
-                Randomize!!
-              </label>
-            
+            <input type="text" id="diveCount" value="12">
+            <button onclick="setX()">SET GRID</button>   
+            <button id="resetBtn" onclick="createDiv(12)">RESET</button>
         </div>
     </div>
+    <div id="footer"> 	&copy istiak</div>
     <script src="main.js"></script>
 </body>
 </html>
